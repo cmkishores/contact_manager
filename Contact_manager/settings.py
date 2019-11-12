@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 
     #CORSHeader
     'corsheaders',
+
+    #userapps
+    'contacts'
 ]
 
 MIDDLEWARE = [
