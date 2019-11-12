@@ -40,7 +40,9 @@ INSTALLED_APPS = [
 
     #rest-framework
     'rest_framework'
-     'corsheaders'
+
+    #CORSHeader
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -51,7 +53,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
+
+#CORS settings
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+       'localhost:3000',
+)
+
 
 ROOT_URLCONF = 'Contact_manager.urls'
 
