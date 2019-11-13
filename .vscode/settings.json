@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "/home/cmkishores/.local/share/virtualenvs/FullContact_Assignment-Se397FFU/bin/python"
+    "python.pythonPath": "/home/cmkishores/.local/share/virtualenvs/FullContact_Assignment-Se397FFU/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }
