@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from contacts import views
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^api/customers/$', views.contact_list),
+    url(r'^api/customers/(?P<pk>[0-9]+)$', views.contact_detail),
 ]

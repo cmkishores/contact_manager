@@ -44,7 +44,7 @@ def contact_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def contacts_detail(request, pk):
+def contact_detail(request, pk):
     """
  Retrieve, update or delete a contact by id/pk.
  """
