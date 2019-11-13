@@ -36,7 +36,7 @@ class  ContactList  extends  Component {
     nextPage(){
         var  self  =  this;
         console.log(this.state.nextPageURL);        
-        contactManager.getCcontactsByURL(this.state.nextPageURL).then((result) => {
+        contactManager.getContactsByURL(this.state.nextPageURL).then((result) => {
             self.setState({ contacts:  result.data, nextPageURL:  result.nextlink})
         });
     }
@@ -61,7 +61,7 @@ class  ContactList  extends  Component {
                 </thead>
                 <tbody>
                 {this.state.contacts.map( contact  =>
-                    <tr  key={c.pk}>
+                    <tr  key={contact.pk}>
                     <td>{contact.pk}  </td>
                     <td>{contact.first_name}</td>
                     <td>{contact.last_name}</td>
@@ -75,7 +75,7 @@ class  ContactList  extends  Component {
 
 
                     <td>
-                    <button  onClick={(e)=>  this.handleDelete(e,contact.pk) }> Delete</button>
+                    <button  className="btn btn-danger" onClick={(e)=>  this.handleDelete(e,contact.pk) }> Delete</button>
                     <a  href={"/contact/" + contact.pk}> Update</a>
                     </td>
                 </tr>)}

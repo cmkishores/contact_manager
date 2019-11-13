@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ContactManager from './ContactManager';
 
-const ContactManager = new ContactManager();
+const contactManager = new ContactManager();
 
-class customerCreateUpdate extends Component {
+class contactCreateUpdate extends Component {
     constructor(props) {
         super(props);
 
@@ -93,15 +93,6 @@ class customerCreateUpdate extends Component {
               Email:</label>
               <input className="form-control" type="text" ref='email' />
 
-            <label>
-              Address:</label>
-              <input className="form-control" type="text" ref='address' />
-
-            <label>
-              Description:</label>
-              <textarea className="form-control" ref='description' ></textarea>
-
-
             <input className="btn btn-primary" type="submit" value="Submit" />
             </div>
           </form>
@@ -109,4 +100,4 @@ class customerCreateUpdate extends Component {
       }  
 }
 
-export default customerCreateUpdate;
+export default contactCreateUpdate;

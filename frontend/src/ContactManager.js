@@ -14,7 +14,7 @@ export default class ContactManager{
         const url = `${LOCAL_API_URL}${link}`;
         return axios.get(url).then(response => response.data);
     }
-    getCContact(pk) {
+    getContact(pk) {
         const url = `${LOCAL_API_URL}/api/contacts/${pk}`;
         return axios.get(url).then(response => response.data);
     }
@@ -24,9 +24,9 @@ export default class ContactManager{
     }
     createContact(contact){
         const url = `${LOCAL_API_URL}/api/contacts/`;
-        return axios.post(url,customer);
+        return axios.post(url,contact);
     }
-    updateCContact(contact){
+    updateContact(contact){
         const url = `${LOCAL_API_URL}/api/contacts/${contact.pk}`;
         return axios.put(url,contact);
     }
