@@ -64,7 +64,7 @@ class  ContactList  extends  Component {
                 <tbody>
                 {this.state.contacts.map( (contact,i)  =>
                     <tr  key={i}>
-                    <td>{contact.pk}  </td>
+                    <td>{contact.id}  </td>
                     <td>{contact.first_name}</td>
                     <td>{contact.last_name}</td>
                     <td>{contact.phone_number}</td>
@@ -78,7 +78,7 @@ class  ContactList  extends  Component {
 
                     <td>
                     <button  className="btn btn-danger" onClick={(e)=>  this.handleDelete(e,contact.pk) }> Delete</button>
-                    <a  href={"/contacts/" + contact.pk}> Update</a>
+                    <a  href={"/contacts/" + contact.id}> Update</a>
                     </td>
                 </tr>)}
                 </tbody>

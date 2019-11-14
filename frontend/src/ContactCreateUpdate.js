@@ -12,6 +12,7 @@ class contactCreateUpdate extends Component {
 
       componentDidMount(){
         const { match: { params } } = this.props;
+        console.log(this.props)
         if(params && params.pk)
         {
             contactManager.getContact(params.pk).then((c)=>{
@@ -36,14 +37,14 @@ class contactCreateUpdate extends Component {
             "first_name": this.refs.firstName.value,
             "last_name": this.refs.lastName.value,
             "email": this.refs.email.value,
-            "phone": this.refs.phone_number.value,           
+            "phone_number": this.refs.phone_number.value,           
             "description": this.refs.description.value,
             "title": this.refs.title.value
         }          
         ).then((result)=>{
           alert("Contact created!");
-        }).then((error)=>{
-          console.log(error)
+        }).catch(()=>{
+         
           alert('There was an error creating the contact. ! Please re-check your form.');
         });
       }
@@ -54,27 +55,27 @@ class contactCreateUpdate extends Component {
             "first_name": this.refs.firstName.value,
             "last_name": this.refs.lastName.value,
             "email": this.refs.email.value,
-            "phone": this.refs.phone_number.value,
+            "phone_number": this.refs.phone_number.value,
             "description": this.refs.description.value,
             "title": this.refs.title.value
         }          
         ).then((result)=>{
           console.log(result);
           alert("Contact updated!");
-        }).then(({result})=>{
-          console.log(result)
+        }).catch(()=>{
           alert('There was an error! Please re-check your form.');
         });
       }
       handleSubmit(event) {
         const { match: { params } } = this.props;
+        console.log(`${this.props} handleSubmit`)
 
         if(params && params.pk){
           this.handleUpdate(params.pk);
         }
         else
         { 
-          
+          console.log("reached handle submit")
           this.handleCreate();
         }
 

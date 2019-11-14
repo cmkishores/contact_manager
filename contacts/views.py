@@ -60,6 +60,7 @@ def contact_detail(request, pk):
     elif request.method == 'PUT':
         serializer = ContactSerialize(contact, data=request.data,context={'request': request})
         if serializer.is_valid():
+            print(" reached is valid ")
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
