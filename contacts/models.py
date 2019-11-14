@@ -10,7 +10,6 @@ class Contact(models.Model):
     description = models.CharField(max_length = 250, blank=True, null=True)
     organization = models.CharField(max_length = 250, blank=True, null=True)
     title = models.CharField(max_length = 250 , blank=True, null=True)
-    avatar = models.ImageField(upload_to='images', blank=True, null=True)
     createdAt = models.DateTimeField("Created At", auto_now_add=True)
 
 

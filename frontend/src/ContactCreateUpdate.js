@@ -14,14 +14,15 @@ class contactCreateUpdate extends Component {
         const { match: { params } } = this.props;
         if(params && params.pk)
         {
-          ContactManager.getContact(params.pk).then((c)=>{
+            contactManager.getContact(params.pk).then((c)=>{
             this.refs.firstName.value = c.first_name;
             this.refs.lastName.value = c.last_name;
             this.refs.email.value = c.email;
-            this.refs.phone.value = c.phone;
+            this.refs.phone_number.value = c.phone_number;
             this.refs.description.value = c.description;
-            this.refs.organization.value = c.organization;
             this.refs.title.value = c.title;
+
+
 
 
 
@@ -30,32 +31,38 @@ class contactCreateUpdate extends Component {
       }
 
       handleCreate(){
-        ContactManager.createContact(
+        contactManager.createContact(
           {
             "first_name": this.refs.firstName.value,
             "last_name": this.refs.lastName.value,
             "email": this.refs.email.value,
-            "phone": this.refs.phone.value,
+            "phone": this.refs.phone_number.value,           
+            "description": this.refs.description.value,
+            "title": this.refs.title.value
         }          
         ).then((result)=>{
           alert("Contact created!");
-        }).catch(()=>{
-          alert('There was an error! Please re-check your form.');
+        }).then((error)=>{
+          console.log(error)
+          alert('There was an error creating the contact. ! Please re-check your form.');
         });
       }
       handleUpdate(pk){
-        ContactManager.updateContact(
+        contactManager.updateContact(
           {
             "pk": pk,
             "first_name": this.refs.firstName.value,
             "last_name": this.refs.lastName.value,
             "email": this.refs.email.value,
-            "phone": this.refs.phone.value,
+            "phone": this.refs.phone_number.value,
+            "description": this.refs.description.value,
+            "title": this.refs.title.value
         }          
         ).then((result)=>{
           console.log(result);
           alert("Contact updated!");
-        }).catch(()=>{
+        }).then(({result})=>{
+          console.log(result)
           alert('There was an error! Please re-check your form.');
         });
       }
@@ -66,7 +73,8 @@ class contactCreateUpdate extends Component {
           this.handleUpdate(params.pk);
         }
         else
-        {
+        { 
+          
           this.handleCreate();
         }
 
@@ -87,11 +95,22 @@ class contactCreateUpdate extends Component {
 
             <label>
               Phone:</label>
-              <input className="form-control" type="text" ref='phone' />
+              <input className="form-control" type="text" ref='phone_number' />
 
             <label>
               Email:</label>
               <input className="form-control" type="text" ref='email' />
+
+            <label> 
+              Description:</label>
+              <input className="form-control" type="text" ref='description' />
+            
+            <label> 
+              Title:</label>
+              <input className="form-control" type="text" ref='title' />
+
+            
+
 
             <input className="btn btn-primary" type="submit" value="Submit" />
             </div>

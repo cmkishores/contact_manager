@@ -15,14 +15,14 @@ const  BaseLayout  = () => (
       <div  className="collapse navbar-collapse"  id="navbarNavAltMarkup">
           <div  className="navbar-nav">
               <a  className="nav-item nav-link"  href="/">CONTACTS</a>
-              <a  className="nav-item nav-link"  href="/customer">Create Contact</a>
+              <a  className="nav-item nav-link"  href="/contacts">Create Contact</a>
           </div>
       </div>
       </nav>
       <div  className="content">
           <Route  path="/"  exact  component={ContactList}  />
-          <Route  path="/customer/:pk"  component={ContactCreateUpdate}  />
-          <Route  path="/customer/"  exact  component={ContactCreateUpdate}  />
+          <Route  path="/contacts/:pk"  component={ContactCreateUpdate}  />
+          <Route  path="/contacts/"  exact  component={ContactCreateUpdate}  />
       </div>
   </div>
   )

@@ -50,7 +50,7 @@ def contact_detail(request, pk):
  """
     try:
         contact = Contact.objects.get(pk=pk)
-    except Contact.DoesNotExist:
+    except contact.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
