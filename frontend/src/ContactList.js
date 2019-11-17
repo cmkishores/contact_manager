@@ -22,6 +22,9 @@ class  ContactList  extends  Component {
             self.setState({ contacts:  result.data, nextPageURL:  result.nextlink})
         });
     }
+    handleChange(e){
+
+    }
     handleDelete(e,pk){
         var  self  =  this;
         contactManager.deleteContact({pk :  pk}).then(()=>{

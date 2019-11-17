@@ -5,7 +5,8 @@ import  ContactList  from  './ContactList'
 import  ContactCreateUpdate  from  './ContactCreateUpdate'
 import  './App.css';
 
-const  BaseLayout  = () => (
+
+const  BaseLayout  = () => ( //Creates a component BaseLayout with navbar and navigations.  
   <div  className="container-fluid">
       <nav  className="navbar navbar-expand-lg navbar-light bg-light">
           <a  className="navbar-brand"  href="#">Contact Manager</a>
@@ -16,6 +17,8 @@ const  BaseLayout  = () => (
           <div  className="navbar-nav">
               <a  className="nav-item nav-link"  href="/">CONTACTS</a>
               <a  className="nav-item nav-link"  href="/contacts">Create Contact</a>
+             
+
           </div>
       </div>
       </nav>
