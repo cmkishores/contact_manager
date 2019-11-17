@@ -20,7 +20,6 @@ class contactCreateUpdate extends Component {
             this.refs.lastName.value = c.last_name;
             this.refs.email.value = c.email;
             this.refs.phone_number.value = c.phone_number;
-            this.refs.description.value = c.description;
             this.refs.title.value = c.title;
 
 
@@ -38,7 +37,6 @@ class contactCreateUpdate extends Component {
             "last_name": this.refs.lastName.value,
             "email": this.refs.email.value,
             "phone_number": this.refs.phone_number.value,           
-            "description": this.refs.description.value,
             "title": this.refs.title.value
         }          
         ).then((result)=>{
@@ -56,7 +54,6 @@ class contactCreateUpdate extends Component {
             "last_name": this.refs.lastName.value,
             "email": this.refs.email.value,
             "phone_number": this.refs.phone_number.value,
-            "description": this.refs.description.value,
             "title": this.refs.title.value
         }          
         ).then((result)=>{
@@ -103,8 +100,8 @@ class contactCreateUpdate extends Component {
               <input className="form-control" type="text" ref='email' />
 
             <label> 
-              Description:</label>
-              <input className="form-control" type="text" ref='description' />
+              Organization :</label>
+              <input className="form-control" type="text" ref='organization' />
             
             <label> 
               Title:</label>

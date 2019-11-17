@@ -7,7 +7,6 @@ class Contact(models.Model):
     last_name = models.CharField("Last Name" , max_length = 250)
     email = models.EmailField()
     phone_number = models.CharField(max_length = 20)
-    description = models.CharField(max_length = 250, blank=True, null=True)
     organization = models.CharField(max_length = 250, blank=True, null=True)
     title = models.CharField(max_length = 250 , blank=True, null=True)
     createdAt = models.DateTimeField("Created At", auto_now_add=True)

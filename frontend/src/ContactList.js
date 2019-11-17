@@ -96,7 +96,6 @@ class  ContactList  extends  Component {
                     <th>Last Name</th>
                     <th>Phone</th>
                     <th>Email</th>
-                    <th>Description</th>
                     <th>Organization</th>
                     <th>Title</th>
                     <th>Created</th>
@@ -114,7 +113,6 @@ class  ContactList  extends  Component {
                     <td>{contact.last_name}</td>
                     <td>{contact.phone_number}</td>
                     <td>{contact.email}</td>
-                    <td>{contact.description}</td>
                     <td>{contact.organization}</td>
                     <td>{contact.title}</td>
                     <td>{contact.createdAt}</td>
@@ -122,7 +120,7 @@ class  ContactList  extends  Component {
 
 
                     <td>
-                    <button  className="btn btn-danger" onClick={(e)=>  this.handleDelete(e,contact.pk) }> Delete</button>
+                    <button  className="btn btn-danger" onClick={(e)=>  this.handleDelete(e,contact.id) }> Delete</button>
                     <a  href={"/contacts/" + contact.id}> Update</a>
                     </td>
                 </tr>)

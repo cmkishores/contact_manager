@@ -6,12 +6,9 @@ from rest_framework import status
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger #Default classes in django that handles page segmentation of lists. 
 from .models import Contact 
 from .serializers import ContactSerialize
+import urllib.request, json
 
-@api_view(['GET'])
-def search_contact(request):
-    #pass
-    contacts = Contact.objects.filter(first_name = request.name)
-    
+
 
 
 @api_view(['GET', 'POST'])
@@ -44,7 +41,9 @@ def contact_list(request):
     elif request.method == 'POST': #For creating new contact. 
         serializer = ContactSerialize(data=request.data)
         if serializer.is_valid():
+            
             serializer.save() #If the requested method is POST, then valid responses are saved as a new object. 
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
