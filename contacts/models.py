@@ -1,6 +1,6 @@
 from django.db import models
 
-
+#Django model for Contacts
 
 class Contact(models.Model):
     first_name = models.CharField("First Name", max_length = 250)
@@ -14,7 +14,7 @@ class Contact(models.Model):
 
 
     def __str__(self):
-        return self.first_name
+        return self.first_name #Set display name 
 
 
 

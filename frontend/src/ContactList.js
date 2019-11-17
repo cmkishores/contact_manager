@@ -9,20 +9,42 @@ class  ContactList  extends  Component {
         super(props);
         this.state  = {
             contacts: [],
-            nextPageURL:  ''
+            nextPageURL:  '',
+            search: []
         };
         this.nextPage  =  this.nextPage.bind(this);
         this.handleDelete  =  this.handleDelete.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
     
     componentDidMount() {
         var  self  =  this;
         contactManager.getContacts().then(function (result) {
-            console.log(result);
-            self.setState({ contacts:  result.data, nextPageURL:  result.nextlink})
+            self.setState({ contacts:  result.data, nextPageURL:  result.nextlink, search: result.data })
         });
     }
-    handleChange(e){
+    handleInputChange = () => {
+        
+        
+        let result = this.filterArray(this.search.value.toLocaleLowerCase());
+        let finalResult = []
+        
+        result.map( (item) => {
+            if (item !== undefined) {
+                finalResult.push(item)
+                // console.log(item)
+                 }
+        this.setState(
+            {
+                search:finalResult
+            }
+        )
+        }
+         )
+         if (this.search.value == '' ){
+            this.setState({search:this.state.contacts})
+        }
+        
 
     }
     handleDelete(e,pk){
@@ -43,10 +65,28 @@ class  ContactList  extends  Component {
             self.setState({ contacts:  result.data, nextPageURL:  result.nextlink})
         });
     }
-    render() {
+    filterArray = (searchValue) => {
+            let result = this.state.contacts.map( (item) => {
+                if (item.first_name.toLowerCase().includes(searchValue) || item.last_name.toLowerCase().includes(searchValue)){    
+                return item;
+                }
+            }
+            
+            )
+            return result
+    }
     
+    render() {
+        console.log(typeof(this.state.search))
         return (
             <div  className="contacts--list">
+                
+                <div className="searchForm">
+                <form>
+                    <input type="text" id="filter" placeholder="Search for..." ref={input => this.search = input} onChange={this.handleInputChange}/>
+                </form>
+                
+                </div>
                 <table  className="table">
                 <thead  key="thead">
                 <tr >
@@ -65,7 +105,9 @@ class  ContactList  extends  Component {
                 </tr>
                 </thead>
                 <tbody>
-                {this.state.contacts.map( (contact,i)  =>
+                {
+                
+                this.state.search.map( (contact,i)  =>
                     <tr  key={i}>
                     <td>{contact.id}  </td>
                     <td>{contact.first_name}</td>
@@ -83,10 +125,13 @@ class  ContactList  extends  Component {
                     <button  className="btn btn-danger" onClick={(e)=>  this.handleDelete(e,contact.pk) }> Delete</button>
                     <a  href={"/contacts/" + contact.id}> Update</a>
                     </td>
-                </tr>)}
+                </tr>)
+                }
+                
                 </tbody>
                 </table>
                 <button  className="btn btn-primary"  onClick=  {  this.nextPage  }>Next</button>
+                    
             </div>
             );
       }

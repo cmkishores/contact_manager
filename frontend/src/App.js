@@ -17,6 +17,7 @@ const  BaseLayout  = () => ( //Creates a component BaseLayout with navbar and na
           <div  className="navbar-nav">
               <a  className="nav-item nav-link"  href="/">CONTACTS</a>
               <a  className="nav-item nav-link"  href="/contacts">Create Contact</a>
+              
              
 
           </div>
