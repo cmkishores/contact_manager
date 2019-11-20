@@ -53,10 +53,10 @@ class  ContactList  extends  Component {
             var  newArr  =  self.state.search.filter(function(obj) {
                 return  obj.id  !==  id;
             });
-            console.log(this.state.contacts)
+            console.log(this.state.search)
             console.log("Setting state")
-            self.setState({contacts:  newArr})
-            console.log(this.state.contacts)
+            self.setState({search:  newArr})
+            console.log(this.state.search)
         });
     }
     
