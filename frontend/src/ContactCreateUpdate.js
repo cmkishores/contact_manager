@@ -12,7 +12,7 @@ class contactCreateUpdate extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          enrichData : {}
+          enrichData : {} //State to store enriched data if recieved.
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +20,7 @@ class contactCreateUpdate extends Component {
 
       }
 
-      componentDidMount(){
+      componentDidMount(){ // Sets the values of the fields in create and update contacts to values already existing in the database. 
         const { match: { params } } = this.props;
         console.log(this.props)
         if(params && params.pk)
@@ -45,7 +45,7 @@ class contactCreateUpdate extends Component {
 
       handleCreate(){
         const header = {
-          Authorization: `Bearer ${API_KEY}`
+          Authorization: `Bearer ${API_KEY}` // API Key for Enrich API
         };
         let searchQuery = {
           email: this.refs.email.value
@@ -53,7 +53,7 @@ class contactCreateUpdate extends Component {
         axios.post(ENRICH_API_URL, searchQuery, { headers: header})
         .then(({ data }) => {
           this.setState({
-            enrichData: data,
+            enrichData: data, //Stores the response of the API in enrichData
           });
         contactManager.createContact(
           {
@@ -61,6 +61,8 @@ class contactCreateUpdate extends Component {
             "last_name": this.refs.lastName.value,
             "email": this.refs.email.value,
             "phone_number": this.refs.phone_number.value,           
+
+            // Organization and title values, automatically updated from the API response
             "organization": this.state.enrichData.organization,
             "title": this.state.enrichData.title
         }          
@@ -77,7 +79,7 @@ class contactCreateUpdate extends Component {
       })
   }
 
-      handleUpdate(pk){
+      handleUpdate(pk){ // Updates the contact with the given details 
         contactManager.updateContact(
           {
             "pk": pk,
