@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import ContactManager from './ContactManager';
 import axios from 'axios';
+import dotenv from "dotenv";
+require("dotenv").config();
+
 
 const contactManager = new ContactManager();
 const ENRICH_API_URL = "https://api.fullcontact.com/v3/person.enrich";
-const API_KEY='HeSeSPNdpnhSLrTWBSc056zeFvOjOr54'
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 
 
 
 class contactCreateUpdate extends Component {
     constructor(props) {
         super(props);
+        console.log(process.env)
         this.state = {
           enrichData : {} //State to store enriched data if recieved.
         }
