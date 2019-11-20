@@ -41,3 +41,8 @@ $ npm start
 ```
 
 Navigate to [http://localhost:3000/](http://localhost:3000/) to see a list of our DRF backend content outputted using React.
+
+## Note
+
+* Addd API Key in a ```.env``` file in ```frontend/ ```
+* If mail ID is present in Enrich API, description and title is automatically fetched.
