@@ -33,6 +33,7 @@ export default class ContactManager {
     //Creats a new contact
     const url = `${LOCAL_API_URL}/api/contacts/`;
     console.log(contact);
+
     return axios.post(url, contact);
   }
 

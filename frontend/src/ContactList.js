@@ -47,14 +47,16 @@ class  ContactList  extends  Component {
         
 
     }
-    handleDelete(e,pk){
+    handleDelete(e,id){
         var  self  =  this;
-        contactManager.deleteContact({pk :  pk}).then(()=>{
-            var  newArr  =  self.state.contacts.filter(function(obj) {
-                return  obj.pk  !==  pk;
+        contactManager.deleteContact({pk :  id}).then(()=>{
+            var  newArr  =  self.state.search.filter(function(obj) {
+                return  obj.id  !==  id;
             });
-    
+            console.log(this.state.contacts)
+            console.log("Setting state")
             self.setState({contacts:  newArr})
+            console.log(this.state.contacts)
         });
     }
     
@@ -77,7 +79,6 @@ class  ContactList  extends  Component {
     }
     
     render() {
-        console.log(typeof(this.state.search))
         return (
             <div  className="contacts--list">
                 

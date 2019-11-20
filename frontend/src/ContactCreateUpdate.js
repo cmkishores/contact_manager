@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import ContactManager from './ContactManager';
+import axios from 'axios';
 
 const contactManager = new ContactManager();
+const ENRICH_API_URL = "https://api.fullcontact.com/v3/person.enrich";
+const API_KEY='HeSeSPNdpnhSLrTWBSc056zeFvOjOr54'
+
+
 
 class contactCreateUpdate extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+          enrichData : {}
+        }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCreate = this.handleCreate.bind(this);
+
       }
 
       componentDidMount(){
@@ -20,7 +30,10 @@ class contactCreateUpdate extends Component {
             this.refs.lastName.value = c.last_name;
             this.refs.email.value = c.email;
             this.refs.phone_number.value = c.phone_number;
+            this.refs.organization.value = c.organization;
             this.refs.title.value = c.title;
+
+
 
 
 
@@ -31,21 +44,39 @@ class contactCreateUpdate extends Component {
       }
 
       handleCreate(){
+        const header = {
+          Authorization: `Bearer ${API_KEY}`
+        };
+        let searchQuery = {
+          email: this.refs.email.value
+        }
+        axios.post(ENRICH_API_URL, searchQuery, { headers: header})
+        .then(({ data }) => {
+          this.setState({
+            enrichData: data,
+          });
         contactManager.createContact(
           {
             "first_name": this.refs.firstName.value,
             "last_name": this.refs.lastName.value,
             "email": this.refs.email.value,
             "phone_number": this.refs.phone_number.value,           
-            "title": this.refs.title.value
+            "organization": this.state.enrichData.organization,
+            "title": this.state.enrichData.title
         }          
         ).then((result)=>{
+          
+          
           alert("Contact created!");
+          
+          
         }).catch(()=>{
          
           alert('There was an error creating the contact. ! Please re-check your form.');
         });
-      }
+      })
+  }
+
       handleUpdate(pk){
         contactManager.updateContact(
           {
@@ -54,11 +85,14 @@ class contactCreateUpdate extends Component {
             "last_name": this.refs.lastName.value,
             "email": this.refs.email.value,
             "phone_number": this.refs.phone_number.value,
+            "organization": this.refs.organization.value,
+
             "title": this.refs.title.value
         }          
         ).then((result)=>{
-          console.log(result);
+          console.log(this.state);
           alert("Contact updated!");
+
         }).catch(()=>{
           alert('There was an error! Please re-check your form.');
         });
