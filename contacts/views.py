@@ -11,8 +11,8 @@ import urllib.request, json
 
 
 
-@api_view(['GET', 'POST'])
-def contact_list(request):
+@api_view(['GET', 'POST']) 
+def contact_list(request): #View for contact listing and creating
     """
  List  contacts, or create a new contact.
  """
@@ -48,7 +48,7 @@ def contact_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def contact_detail(request, pk):
+def contact_detail(request, pk): #View for contact deletion and updation
     """
  Retrieve, update or delete a contact by id/pk.
  """

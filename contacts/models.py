@@ -2,7 +2,7 @@ from django.db import models
 
 #Django model for Contacts
 
-class Contact(models.Model):
+class Contact(models.Model): #Model fields
     first_name = models.CharField("First Name", max_length = 250)
     last_name = models.CharField("Last Name" , max_length = 250)
     email = models.EmailField()
