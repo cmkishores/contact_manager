@@ -19,15 +19,14 @@ class  ContactList  extends  Component {
     
     componentDidMount() {
         var  self  =  this;
-        contactManager.getContacts().then(function (result) {
+        contactManager.getContacts().then(function (result) { //Retrieves the contacts and stores to the state
             self.setState({ contacts:  result.data, nextPageURL:  result.nextlink, search: result.data })
         });
     }
-    handleInputChange = () => {
+    handleInputChange = () => { // This function changes according to the input given in search field and dynamically changes the contact list        
         
-        
-        let result = this.filterArray(this.search.value.toLocaleLowerCase());
-        let finalResult = []
+        let result = this.filterArray(this.search.value.toLocaleLowerCase()); //search query
+        let finalResult = [] // Variable to store search query result
         
         result.map( (item) => {
             if (item !== undefined) {
@@ -36,20 +35,20 @@ class  ContactList  extends  Component {
                  }
         this.setState(
             {
-                search:finalResult
+                search:finalResult //result of search in state. 
             }
         )
         }
          )
-         if (this.search.value == '' ){
+         if (this.search.value == '' ){ // If search query is empty, revert back to display the original contact list
             this.setState({search:this.state.contacts})
         }
         
 
     }
-    handleDelete(e,id){
+    handleDelete(e,id){ //Finds the contact with matching pk, creates a new array excluding that contact, and sets that new array as the present state. 
         var  self  =  this;
-        contactManager.deleteContact({pk :  id}).then(()=>{
+        contactManager.deleteContact({pk :  id}).then(()=>{ 
             var  newArr  =  self.state.search.filter(function(obj) {
                 return  obj.id  !==  id;
             });
@@ -67,7 +66,7 @@ class  ContactList  extends  Component {
             self.setState({ contacts:  result.data, nextPageURL:  result.nextlink})
         });
     }
-    filterArray = (searchValue) => {
+    filterArray = (searchValue) => { // Returns items that includes the search query
             let result = this.state.contacts.map( (item) => {
                 if (item.first_name.toLowerCase().includes(searchValue) || item.last_name.toLowerCase().includes(searchValue)){    
                 return item;
