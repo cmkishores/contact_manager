@@ -18,7 +18,7 @@ class  ContactList  extends  Component {
     }
     
     componentDidMount() {
-        var  self  =  this;
+        let  self  =  this;
         contactManager.getContacts().then(function (result) { //Retrieves the contacts and stores to the state
             self.setState({ contacts:  result.data, nextPageURL:  result.nextlink, search: result.data })
         });
@@ -47,9 +47,9 @@ class  ContactList  extends  Component {
 
     }
     handleDelete(e,id){ //Finds the contact with matching pk, creates a new array excluding that contact, and sets that new array as the present state. 
-        var  self  =  this;
+        let  self  =  this;
         contactManager.deleteContact({pk :  id}).then(()=>{ 
-            var  newArr  =  self.state.search.filter(function(obj) {
+            let  newArr  =  self.state.search.filter(function(obj) {
                 return  obj.id  !==  id;
             });
             console.log(this.state.search)
@@ -60,7 +60,7 @@ class  ContactList  extends  Component {
     }
     
     nextPage(){
-        var  self  =  this;
+        let  self  =  this;
         console.log(this.state.nextPageURL);        
         contactManager.getContactsByURL(this.state.nextPageURL).then((result) => {
             self.setState({ contacts:  result.data, nextPageURL:  result.nextlink})
